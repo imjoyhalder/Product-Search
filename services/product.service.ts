@@ -1,3 +1,4 @@
+import { Revalidate } from './../node_modules/next/dist/server/lib/cache-control.d';
 import { ProductResponse } from "@/interface/product.interface";
 
 export const fetchProducts = async (
@@ -11,7 +12,10 @@ export const fetchProducts = async (
         ? `https://dummyjson.com/products/search?q=${query}&limit=${limit}&skip=${skip}`
         : `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
 
-    const res = await fetch(url);
+    const res = await fetch(url, {
+        cache: "no-store",
+        next: { revalidate: 5 },
+    });
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data: ProductResponse = await res.json();
