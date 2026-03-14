@@ -35,4 +35,14 @@ export const fetchProducts = async (
     return data
 };
 
+export const fetchProductById = async (id: string) => {
+    try {
+        const res = await fetch(`https://dummyjson.com/products/${id}`);
+        if (!res.ok) return null;
+        return await res.json();
+    } catch (error) {
+        return null;
+    }
+}
+
 

@@ -12,7 +12,7 @@ export default function SearchBar() {
         const params = new URLSearchParams(searchParams);
         console.log("SearchParams: ", searchParams);
         console.log("Pathname: ", pathname);
-        console.log("Params: ", params);
+        console.log("Params: ", params.toString());
 
         console.log(term);
 
